@@ -1,4 +1,12 @@
-<%= attachment_image_tag user, :profile_image, size:"60x60", format: 'jpeg', fallback: "no_image.jpg" %>
+<%= attachment_image_tag user, :profile_image, size:"80x80", format: 'jpeg', fallback: "no_image.jpg" %>
+<% unless user == current_user %>
+	<% if current_user.following?(user) %>
+		<%= link_to "フォローを外す", user_relationships_path(user), method: :delete, class: "btn btn-danger " %>
+	<% else %>
+		<%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success" %>
+	<% end %>
+
+<% end %>
 	<table class="table">
 		<tr><tr/>
 			<th>name</th>
@@ -9,7 +17,16 @@
 			<th>introduction</th>
 			<th><%= user.introduction %></th>
 		</tr>
+		<!-- ここからフォロー機能 -->
+		<tr>
+			<th>follows</th>
+			<th><%= link_to "#{user.follower.count}", follows_path(user) %></th>
+		</tr>
+		<tr>
+			<th>followers</th>
+			<th><%= link_to "#{user.followed.count}", followers_path(user) %></th>
+		</tr>
 	</table>
 
-<%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_id" %>
-
+	<%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_id" %>
+<!-- </div> -->

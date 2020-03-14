@@ -1,0 +1,29 @@
+<h2>Follows Index</h2>
+	<div class="col-xs-9">
+		<!--follows一覧 -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>image</th>
+					<th>name</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @follower.each do |follower| %>
+				<tr>
+					<td><%= attachment_image_tag follower, :profile_image, size:"60x60", format: 'jpeg', fallback: "no_image.jpg" %></td>
+					<td><%= follower.name%></td>
+					<td>フォロー数：<%= follower.follower.count %></td>
+					<td>フォロワー数：<%= follower.followed.count %></td>
+					<td><%= link_to "フォローを外す" %></td>
+					<td><%= link_to "Show", follower, class: "follower_#{follower.id}" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+
+
