@@ -1,11 +1,11 @@
 class RelationshipsController < ApplicationController
 
   def follows
-  	@user = User.find(params[:user_id])
-    @follows = Relationship.where(params[:follower_id])
+  	@user = User.find(params[:user_id]).following_user
   end
 
   def followers
+    @user = User.find(params[:user_id]).follower_user
   end
 
   def index

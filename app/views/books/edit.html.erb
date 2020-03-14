@@ -24,13 +24,13 @@
 					          <h4>Opinion</h4>
 					          <%= f.text_area :body ,class: "col-xs-12" %>
 					        </div>
-
+					        <br>
 					        <div class="action row">
 					           <input type="submit" name="commit" value="Update Book" class="btn btn-primary col-xs-12" data-disable-with="Update Book">
 					        </div>
 						  <% end %>
-                             <br>
-				             <p><%= link_to "Show",book_path(@book) %> | <%= link_to "Back",books_path %></p>
+						  <br>
+				          <p><%= link_to "Show",book_path(@book) %> | <%= link_to "Back",books_path %></p>
 			    </div>
 	        </div>
     </div>
